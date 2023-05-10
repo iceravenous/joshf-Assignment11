@@ -22,6 +22,8 @@ public class TransactionRepository {
 	public List<Transaction> findAll () {
 		return transactions;
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	private void populateData() {
