@@ -5,8 +5,9 @@
 	</head>
 	<body>
 		<h2>Transaction History</h2>
-		
+		<!--
 		<table>
+		 
 			<tr>
 				<th>ID</th>
 				<th>Date</th>
@@ -14,15 +15,16 @@
 				<th>Funds In</th>
 				<th>Funds Out</th>
 			</tr>
-			<!-- These 4 rows below are for demonstration purposes only
-			     You will need to edit the code below in order to make
-			     it dynamically list ALL 100 transactions from the Repo -->
-			
-			<tr th:each="storedTransaction : ${transactions}">
-				<td><a th:href="@{/transactions/{transactionId} (transactionId=${storedTransaction.id})}">[[${storedTransaction.id}]]</a></td>	
+
+			 
+			<tr th:each="storedTransaction : ${transaction}"> </tr>
+		</table>
+		
+			<!-- 
+				<td><a th:href="@{/transactions/{transactionId} (transactionId=${storedTransaction.id})}"></a></td>	
 				<td th:text="${storedTransaction.date}"></td>
 				<td th:text="${storedTransaction.retailer}"></td>
-				<td>
+				<td> 
 					<span th:if="${storedTransaction.type eq 'C'}">[[${storedTransaction.amount}]]</span>
 					<span th:unless="${storedTransaction.type eq 'D'}"></span>
 				</td>
@@ -31,10 +33,17 @@
 					<span th:unless="${storedTransaction.type eq 'C'}"></span>
 				</td>
 				
-			</tr>
+			</tr>  
+			</table> -->
 			
-
-		
-		</table>
+		<div th:each="storedTransaction : ${transaction}">
+			<h2>Transaction ID: <span th:text="${transaction.id}" ></span> </h2>
+			
+			<p>Date: <span th:text="${transaction.date}"></span></p>
+			<p>Amount: <span th:text="${transaction.amount}"></span></p>
+			<p>Description: <span th:text="${transaction.retailer}"></span></p>
+			
+			<a href = "../transactions">back</a>
+		</div>
 	</body>
 </html>

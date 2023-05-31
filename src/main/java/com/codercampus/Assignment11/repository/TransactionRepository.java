@@ -35,4 +35,11 @@ public class TransactionRepository {
 		} 
 		
 	}
+
+	public Transaction findById(Integer transactionId) {
+		
+		return transactions.get(transactionId);
+	}
+
+
 }
