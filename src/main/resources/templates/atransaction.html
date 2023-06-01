@@ -4,44 +4,32 @@
 		<link rel="stylesheet" href="/css/transactions.css"/>
 	</head>
 	<body>
-		<h2>Transaction History</h2>
-		<!--
-		<table>
-		 
-			<tr>
-				<th>ID</th>
-				<th>Date</th>
-				<th>Retailer</th>
-				<th>Funds In</th>
-				<th>Funds Out</th>
-			</tr>
-
-			 
-			<tr th:each="storedTransaction : ${transaction}"> </tr>
-		</table>
-		
-			<!-- 
-				<td><a th:href="@{/transactions/{transactionId} (transactionId=${storedTransaction.id})}"></a></td>	
-				<td th:text="${storedTransaction.date}"></td>
-				<td th:text="${storedTransaction.retailer}"></td>
-				<td> 
-					<span th:if="${storedTransaction.type eq 'C'}">[[${storedTransaction.amount}]]</span>
-					<span th:unless="${storedTransaction.type eq 'D'}"></span>
-				</td>
-				<td>
-					<span th:if="${storedTransaction.type eq 'D'}">[[${storedTransaction.amount}]]</span>
-					<span th:unless="${storedTransaction.type eq 'C'}"></span>
-				</td>
 				
-			</tr>  
-			</table> -->
-			
 		<div th:each="storedTransaction : ${transaction}">
-			<h2>Transaction ID: <span th:text="${transaction.id}" ></span> </h2>
-			
-			<p>Date: <span th:text="${transaction.date}"></span></p>
-			<p>Amount: <span th:text="${transaction.amount}"></span></p>
-			<p>Description: <span th:text="${transaction.retailer}"></span></p>
+			<div th:if="${transaction.type == 'C'}">
+				<h2 >Transaction ID: 
+						<span th:text="${transaction.id}" ></span> 
+						(Credit)
+				</h2>
+				
+				
+				
+				<p>Date: <span th:text="${transaction.date}"></span></p>
+				<p>Amount: <span th:text="${transaction.amount}"></span></p>
+				<p>Description: <span th:text="${transaction.retailer}"></span></p>
+			</div>
+			<div th:if="${transaction.type == 'D'}">
+				<h2 >Transaction ID: 
+						<span th:text="${transaction.id}" ></span> 
+						(Debit)
+				</h2>
+				
+				
+				
+				<p>Date: <span th:text="${transaction.date}"></span></p>
+				<p>Amount: <span th:text="-${transaction.amount}"></span></p>
+				<p>Description: <span th:text="${transaction.retailer}"></span></p>
+			</div>
 			
 			<a href = "../transactions">back</a>
 		</div>
