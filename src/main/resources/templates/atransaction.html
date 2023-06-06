@@ -15,7 +15,7 @@
 				
 				
 				<p>Date: <span th:text="${transaction.date}"></span></p>
-				<p>Amount: <span th:text="${transaction.amount}"></span></p>
+				<p>Amount: <span th:text="-${transaction.amount}"></span></p>
 				<p>Description: <span th:text="${transaction.retailer}"></span></p>
 			</div>
 			<div th:if="${transaction.type == 'D'}">
@@ -27,7 +27,7 @@
 				
 				
 				<p>Date: <span th:text="${transaction.date}"></span></p>
-				<p>Amount: <span th:text="-${transaction.amount}"></span></p>
+				<p>Amount: <span th:text="${transaction.amount}"></span></p>
 				<p>Description: <span th:text="${transaction.retailer}"></span></p>
 			</div>
 			
