@@ -1,6 +1,8 @@
 package com.codercampus.Assignment11.web;
 
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,12 @@ public class TransactionController {
 	@GetMapping("/transactions")
 	public String getTransactions (ModelMap model) {
 		List<Transaction> transactionList = transactionService.findAll();
-		
+//		List<Transaction> sortedList = transactionList.stream()
+//				.sorted(Comparator.naturalOrder())
+//				.collect(Collectors.toList());
+		Collections.sort(transactionList, Comparator.comparing(Transaction::getDate));
 		Transaction transaction = new Transaction();
+		
 		
 		model.put("transaction", transaction);
 		model.put("transactions", transactionList);
